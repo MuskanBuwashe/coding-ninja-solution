@@ -1,0 +1,74 @@
+/*Problem statement
+Ninja was playing with her sister to solve a puzzle pattern. However, even after taking several hours, they could not solve the problem.
+
+A value of N is given to them, and they are asked to solve the problem. Since they are stuck for a while, they ask you to solve the problem. Can you help solve this problem?
+
+Example : Pattern for N = 4
+
+****
+ ***     
+  **
+   *
+Detailed explanation ( Input/output format, Notes, Images )
+Constraints:
+1 <= T <= 50
+1 <= N <= 300
+
+Time Limit: 1 sec
+Sample Input 1:
+2
+3
+2
+Sample Output 1:
+***
+ **     
+  *
+
+**
+ *     
+Explanation for Sample Input 1:
+ In the first test case, the value of ‘N’ is 3, so three rows are to be printed from 1 to 3 where each row starts from 3, which goes on till 1. Hence the answer is [“***”,”**”,”*”].
+
+ In the second test case, the value of ‘N’ is 2, so the two rows are to be printed from 1 to 3 where each row starts from 3, which goes on till 1. Hence the answer is [“**”,”*”].
+Sample Input 2:
+
+2
+4
+5
+Sample Output 2:
+****
+ ***     
+  **
+   *
+
+*****
+ ****     
+  ***
+   **
+    *
+*/
+
+import java.util.Scanner;
+public class Solution {
+
+	public static void main(String[] args)  
+	{
+		Scanner s = new Scanner(System.in);
+		int N = s.nextInt();
+		for(int i=1;i<=N;i++){
+			int n = s.nextInt();
+			for(int x=1;x<=n;x++){
+			for(int y =1;y<=x-1;y++){
+				System.out.print(" ");
+			}
+			
+			for(int y= 1; y<=n-x+1;y++){
+				System.out.print("*");
+			}
+			System.out.println();
+		}
+		}
+		
+	    
+	}
+}
