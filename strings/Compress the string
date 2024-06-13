@@ -1,0 +1,90 @@
+/*Problem statement
+Write a program to do basic string compression. For a character which is consecutively repeated more than once, replace consecutive duplicate occurrences with the count of repetitions.
+
+Example:
+If a string has 'x' repeated 5 times, replace this "xxxxx" with "x5".
+The string is compressed only when the repeated character count is more than 1.
+Note:
+Consecutive count of every character in the input string is less than or equal to 9. You are not required to print anything. It has already been taken care of. Just implement the given function and return the compressed string.
+Detailed explanation ( Input/output format, Notes, Images )
+Constraints:
+0 <= N <= 10^6
+
+Where 'N' is the length of the input string.
+
+Time Limit: 1 sec
+Sample Input 1:
+aaabbccdsa
+Sample Output 1:
+a3b2c2dsa
+Explanation for Sample Output 1:
+In the given string 'a' is repeated 3 times, 'b' is repeated 2 times, 'c' is repeated 2 times and 'd', 's' and 'a' and occuring 1 time hence no compression for last 3 characters.
+Sample Input 2:
+aaabbcddeeeee
+Sample Output 2:
+a3b2cd2e5
+Explanation for Sample Output 2:
+In the given string 'a' is repeated 3 times, 'b' is repeated 2 times, 'c' is occuring single time, 'd' is repeating 2 times and 'e' is repeating 5times.*/
+
+/*
+	Time Complexity: O(N)
+	Space Complexity: O(1)
+	
+	Where N is the length of the input string.
+*/
+public class Solution {
+	public static String getCompressedString(String s) {
+
+		// Declare an integer variable n to store the length of the input string
+		int n = s.length();
+
+		// Declare a string variable compressString to hold the final compressed
+		// string.
+		String compressString = "";
+
+		// Declare an integer variable localCount to keep the count of repetitions
+		// of the current character of the string.
+		int localCount = 0;
+
+		// Declare a character type variable currentCharacter to store the current
+		// character of the string.
+		char currentCharacter;
+
+		// Declare two integer variables i and j as two loop counters.
+		int i = 0;
+		int j = 0;
+		for (i = 0; i < n; ++i) {
+
+			// Set currentCharacter to s[i] denoting the current character
+			currentCharacter = s.charAt(i);
+			localCount = 0;
+			for (j = i; j < n; ++j) {
+
+				// If our currentCharacter is equal to s[j]
+				if (currentCharacter == s.charAt(j))
+					localCount++;
+				else
+					break;
+			}
+
+			// If our localCount is equal to 1 denoting a single occurrence of the
+			// currentCharacter
+			if (localCount == 1) {
+				compressString = compressString + currentCharacter;
+			} else {
+				compressString = compressString + currentCharacter + String.valueOf(localCount);
+			}
+
+			/*
+			 * Set i equal to j - 1 because j has already encountered a different character.
+			 * Hence, i needs to be set one step back so that on the next increment of i, it
+			 * will start from that different character.
+			 */
+			i = j - 1;
+		}
+
+		// Return compressed string
+		return compressString;
+	}
+
+}
